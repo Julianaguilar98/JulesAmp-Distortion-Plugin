@@ -26,7 +26,7 @@ JulesAmpAudioProcessor::JulesAmpAudioProcessor()
     state = new AudioProcessorValueTreeState(*this, nullptr);
 
     state->createAndAddParameter("drive", "Drive", "Drive", NormalisableRange<float>(0.f, 1.f, 0.0001), 1.0, nullptr, nullptr);
-    state->createAndAddParameter("range", "Range", "Range", NormalisableRange<float>(0.f, 3000.f, 0.0001), 1.0, nullptr, nullptr);
+    state->createAndAddParameter("range", "Range", "Range", NormalisableRange<float>(0.f, 1500.f, 0.0001, 0.25f), 1.0, nullptr, nullptr);
     state->createAndAddParameter("blend", "Blend", "Blend", NormalisableRange<float>(0.f, 1.f, 0.0001), 1.0, nullptr, nullptr);
     state->createAndAddParameter("volume", "Volume", "Volume", NormalisableRange<float>(0.f, 3.f, 0.0001), 1.0, nullptr, nullptr);
 
