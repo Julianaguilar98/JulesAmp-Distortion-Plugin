@@ -162,11 +162,23 @@ void JulesAmpAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
+
+    float drive = *state->getRawParameterValue("drive");
+    float range = *state->getRawParameterValue("range");
+    float blend = *state->getRawParameterValue("blend");
+    float volume = *state->getRawParameterValue("volume");
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         auto* channelData = buffer.getWritePointer (channel);
 
-        // ..do something to the data...
+        for (int sample = 0; sample < buffer.getNumSamples(); sample++) {
+
+            *channelData *= drive * range;
+            *channelData = (2.f / float_Pi) * atan(*channelData);
+            channelData++;
+        }
+
     }
 }
 
