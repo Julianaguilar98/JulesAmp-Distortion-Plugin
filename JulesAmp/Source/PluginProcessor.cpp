@@ -174,8 +174,10 @@ void JulesAmpAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
 
         for (int sample = 0; sample < buffer.getNumSamples(); sample++) {
 
+            float cleanSig = *channelData;
+
             *channelData *= drive * range;
-            *channelData = (2.f / float_Pi) * atan(*channelData);
+            *channelData = (((((2.f / float_Pi) * atan(*channelData)) * blend) + (cleanSig * (1.f - blend))) / 2) * volume;
             channelData++;
         }
 
