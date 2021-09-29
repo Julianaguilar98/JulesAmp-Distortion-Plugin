@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="Gr7QQD" name="JulesAmp" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="JulesAmp"
-              pluginFormats="buildVST3" pluginChannelConfigs="{1, 1}, {2, 2}">
+              pluginFormats="buildStandalone,buildVST3" pluginChannelConfigs="{1, 1}, {2, 2}">
   <MAINGROUP id="bXDVgg" name="JulesAmp">
     <GROUP id="{E8E9ACE6-ECA7-7A9C-DB73-7BE787C37FF0}" name="Source">
       <FILE id="RcdiiZ" name="PluginProcessor.cpp" compile="1" resource="0"
