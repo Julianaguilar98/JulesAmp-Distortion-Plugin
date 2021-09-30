@@ -12,6 +12,15 @@
 #include "PluginProcessor.h"
 using namespace juce; //NEEDED THIS
 
+struct CustomRotarySlider : juce::Slider 
+{
+    CustomRotarySlider() : juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalDrag,
+        juce::Slider::TextEntryBoxPosition::NoTextBox)
+    {
+
+    }
+};
+
 //==============================================================================
 /**
 */
@@ -27,7 +36,7 @@ public:
 
 private:
 
-    ScopedPointer<Slider> driveKnob;
+    /*ScopedPointer<Slider> driveKnob;
     ScopedPointer<Slider> rangeKnob;
     ScopedPointer<Slider> blendKnob;
     ScopedPointer<Slider> volumeKnob;
@@ -35,7 +44,10 @@ private:
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> driveAttachement;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> rangeAttachement;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> blendAttachement;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> volumeAttachement;
+    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> volumeAttachement;*/
+
+    CustomRotarySlider driveKnob, rangeKnob, blendKnob, volumeKnob;
+    std::vector<juce::Component*> getComps();
 
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
