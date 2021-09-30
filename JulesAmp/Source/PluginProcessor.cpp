@@ -8,7 +8,6 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-using namespace juce;
 
 //==============================================================================
 JulesAmpAudioProcessor::JulesAmpAudioProcessor()
@@ -23,17 +22,17 @@ JulesAmpAudioProcessor::JulesAmpAudioProcessor()
                        )
 #endif
 {
-    state = new AudioProcessorValueTreeState(*this, nullptr);
+    state = new juce::AudioProcessorValueTreeState(*this, nullptr);
 
-    state->createAndAddParameter("drive", "Drive", "Drive", NormalisableRange<float>(0.f, 1.f, 0.0001), 1.0, nullptr, nullptr);
-    state->createAndAddParameter("range", "Range", "Range", NormalisableRange<float>(0.f, 1500.f, 0.0001, 0.25f), 1.0, nullptr, nullptr);
-    state->createAndAddParameter("blend", "Blend", "Blend", NormalisableRange<float>(0.f, 1.f, 0.0001), 1.0, nullptr, nullptr);
-    state->createAndAddParameter("volume", "Volume", "Volume", NormalisableRange<float>(0.f, 3.f, 0.0001), 1.0, nullptr, nullptr);
+    state->createAndAddParameter("drive", "Drive", "Drive", juce::NormalisableRange<float>(0.f, 1.f, 0.0001), 1.0, nullptr, nullptr);
+    state->createAndAddParameter("range", "Range", "Range", juce::NormalisableRange<float>(0.f, 1500.f, 0.0001, 0.25f), 1.0, nullptr, nullptr);
+    state->createAndAddParameter("blend", "Blend", "Blend", juce::NormalisableRange<float>(0.f, 1.f, 0.0001), 1.0, nullptr, nullptr);
+    state->createAndAddParameter("volume", "Volume", "Volume", juce::NormalisableRange<float>(0.f, 3.f, 0.0001), 1.0, nullptr, nullptr);
 
-    state->state = ValueTree("drive");
-    state->state = ValueTree("range");
-    state->state = ValueTree("blend");
-    state->state = ValueTree("volume");
+    state->state = juce::ValueTree("drive");
+    state->state = juce::ValueTree("range");
+    state->state = juce::ValueTree("blend");
+    state->state = juce::ValueTree("volume");
 }
 
 JulesAmpAudioProcessor::~JulesAmpAudioProcessor()
@@ -177,13 +176,13 @@ void JulesAmpAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
             float cleanSig = *channelData;
 
             *channelData *= drive * range;
-            *channelData = (((((2.f / float_Pi) * atan(*channelData)) * blend) + (cleanSig * (1.f - blend))) / 2) * volume;
+            *channelData = (((((2.f / juce::float_Pi) * atan(*channelData)) * blend) + (cleanSig * (1.f - blend))) / 2) * volume;
             channelData++;
         }
     }
 }
 
-AudioProcessorValueTreeState& JulesAmpAudioProcessor::getState() {
+juce::AudioProcessorValueTreeState& JulesAmpAudioProcessor::getState() {
 
     return *state;
 }
@@ -206,7 +205,7 @@ void JulesAmpAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 
-    MemoryOutputStream stream(destData, false);
+    juce::MemoryOutputStream stream(destData, false);
     state->state.writeToStream(stream);
 
 }
@@ -216,7 +215,7 @@ void JulesAmpAudioProcessor::setStateInformation(const void* data, int sizeInByt
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
 
-    ValueTree tree = ValueTree::readFromData(data, sizeInBytes);
+    juce::ValueTree tree = juce::ValueTree::readFromData(data, sizeInBytes);
 
     if (tree.isValid()) {
         state->state = tree;

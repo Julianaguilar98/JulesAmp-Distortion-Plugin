@@ -9,7 +9,7 @@
 #pragma once
 
 #include <JuceHeader.h>
-using namespace juce;
+
 //==============================================================================
 /**
 */
@@ -53,11 +53,11 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    AudioProcessorValueTreeState& getState();
+    juce::AudioProcessorValueTreeState& getState();
 
 private:
 
-    ScopedPointer<AudioProcessorValueTreeState> state;
+    juce::ScopedPointer<juce::AudioProcessorValueTreeState> state;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (JulesAmpAudioProcessor)
