@@ -9,3 +9,10 @@ Best of all, JulesAMP is available in VST3/AU/AAX Format, so it is compatible wi
 This includes: Reaper, Cubase, Ableton, Pro Tools, and Logic Pro.
 
 Made in C++ with the JUCE framework.
+
+
+Quick Demo and walkthrough:
+https://drive.google.com/file/d/1Q1mqqEKWI8Q7IetEvcZfyavorm2Jz6LK/view?usp=sharing
+
+Playthrough Demo (No Talking):
+https://drive.google.com/file/d/1p_CSC40xFmOCdm1HbNwBMwK_ft-xW0A-/view?usp=sharing
