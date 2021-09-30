@@ -1,4 +1,4 @@
-![altText](https://hosting.photobucket.com/images/i/Julianaguilar98/JulesAmp.png)
+![altText](https://hosting.photobucket.com/images/i/Julianaguilar98/JulesAmp(1).png)
 
 JulesAmp is a distortion plugin that amplifies your audio and adds heavy distortion!
 The amplifier has 4 sliders. You may adjust the Distortion amount, the range of the distortion, the blend (or mix) of the dry/wet tone,
