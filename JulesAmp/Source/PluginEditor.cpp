@@ -14,7 +14,7 @@ JulesAmpAudioProcessorEditor::JulesAmpAudioProcessorEditor (JulesAmpAudioProcess
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
     //Adding Slider and type of Slider (Rotary)
-    /*addAndMakeVisible(driveKnob = new Slider("Drive"));
+    addAndMakeVisible(driveKnob = new Slider("Drive"));
     driveKnob->setSliderStyle(Slider::Rotary);
     driveKnob->setTextBoxStyle(Slider::NoTextBox, false, 100, 100);
 
@@ -33,12 +33,7 @@ JulesAmpAudioProcessorEditor::JulesAmpAudioProcessorEditor (JulesAmpAudioProcess
     driveAttachement = new AudioProcessorValueTreeState::SliderAttachment(p.getState(), "drive", *driveKnob);
     rangeAttachement = new AudioProcessorValueTreeState::SliderAttachment(p.getState(), "range", *rangeKnob);
     blendAttachement = new AudioProcessorValueTreeState::SliderAttachment(p.getState(), "blend", *blendKnob);
-    volumeAttachement = new AudioProcessorValueTreeState::SliderAttachment(p.getState(), "volume", *volumeKnob);*/
-
-    for (auto* comp : getComps())
-    {
-        addAndMakeVisible(comp);
-    }
+    volumeAttachement = new AudioProcessorValueTreeState::SliderAttachment(p.getState(), "volume", *volumeKnob);
 
     setSize (600, 400); //Change size to match JulesEQ
 }
@@ -63,30 +58,18 @@ void JulesAmpAudioProcessorEditor::resized()
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
 
+    auto bounds = getLocalBounds();
+
+    auto leftArea = bounds.removeFromLeft(bounds.getWidth() * 0.33);
+    auto rightArea = bounds.removeFromRight(bounds.getWidth() * 0.5);
+
+    driveKnob->setBounds(leftArea.removeFromTop(leftArea.getHeight() * 0.5));
+    rangeKnob->setBounds(leftArea);
+    blendKnob->setBounds(rightArea.removeFromTop(rightArea.getHeight() * 0.5));
+    volumeKnob->setBounds(rightArea);
+
     /*driveKnob->setBounds(((getWidth() / 5) * 1) - (100 / 2), (getHeight() / 2) - (100 / 2), 100, 100);
     rangeKnob->setBounds(((getWidth() / 5) * 2) - (100 / 2), (getHeight() / 2) - (100 / 2), 100, 100);
     blendKnob->setBounds(((getWidth() / 5) * 3) - (100 / 2), (getHeight() / 2) - (100 / 2), 100, 100);
     volumeKnob->setBounds(((getWidth() / 5) * 4) - (100 / 2), (getHeight() / 2) - (100 / 2), 100, 100);*/
-
-    auto bounds = getLocalBounds();
-    
-    auto leftArea = bounds.removeFromLeft(bounds.getWidth() * 0.33);
-    auto rightArea = bounds.removeFromRight(bounds.getWidth() * 0.5);
-
-    driveKnob.setBounds(leftArea.removeFromTop(leftArea.getHeight() * 0.5));
-    rangeKnob.setBounds(leftArea);
-    blendKnob.setBounds(rightArea.removeFromTop(rightArea.getHeight() * 0.5));
-    volumeKnob.setBounds(rightArea);
-
-}
-
-std::vector<juce::Component*> JulesAmpAudioProcessorEditor::getComps()
-{
-    return
-    {
-        &driveKnob,
-        &rangeKnob,
-        &blendKnob,
-        &volumeKnob
-    };
 }
